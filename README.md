@@ -9,37 +9,6 @@ This project is a web page built using Flutter that allows users to generate dir
 - User-friendly web interface
 - Built with Flutter for cross-platform compatibility
 
-## Project Structure
-
-```
-lib/
-├── core/
-│   ├── providers/
-│   │   ├── interfaces/
-│   │   │   └── provider_base.dart
-│   │   └── google_drive_provider.dart
-│   └── generate_link.dart
-├── pages/
-│   ├── components/
-│   │   └── app_bar.dart
-│   └── home_page.dart
-└── main.dart
-```
-
-- `core/`: Contains the core functionality of the application.
-  - `providers/`: Contains the provider implementations and interfaces.
-    - `interfaces/`: Contains the base interface for providers.
-      - `provider_base.dart`: Base interface for providers.
-    - `google_drive_provider.dart`: Implementation for Google Drive provider.
-  - `generate_link.dart`: Core logic to generate direct links.
-
-- `pages/`: Contains the UI components and pages.
-  - `components/`: Contains reusable UI components.
-    - `app_bar.dart`: Custom app bar component.
-  - `home_page.dart`: The main home page of the application.
-
-- `main.dart`: Entry point of the application.
-
 ## Getting Started
 
 ### Prerequisites
@@ -75,7 +44,7 @@ lib/
 
 To add support for additional cloud storage providers, follow these steps:
 
-1. Create a new Dart file for the provider in the `lib/core/providers` directory, similar to `google_drive_provider.dart`.
+1. Create a new Dart file for the provider in the `lib/providers` directory, similar to `google_drive_provider.dart`.
 2. Implement the logic to generate direct download links for the provider.
 
     Example:
@@ -103,8 +72,8 @@ To add support for additional cloud storage providers, follow these steps:
 3. Add the new provider to the provider list in `generate_link.dart`:
 
     ```dart
-    import 'package:direct_link_generator/core/providers/interfaces/provider_base.dart';
     import 'providers/google_drive_provider.dart';
+    import 'providers/interfaces/provider_base.dart';
 
     final providers = <ProviderBase>[
       GoogleDriveProvider(),
@@ -123,6 +92,30 @@ To add support for additional cloud storage providers, follow these steps:
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or new features to add.
+
+### Project Structure
+
+- `core/`: Contains the core functionality of the application.
+  - `generate_link.dart`: Core logic to generate direct links.
+  
+- `pages/`: Contains the UI components and pages.
+  - `components/`: Contains reusable UI components.
+    - `app_bar.dart`: Custom app bar component.
+  - `home_page.dart`: The main home page of the application.
+
+- `providers/`: Contains the provider implementations and interfaces.
+  - `interfaces/`: Contains the base interface for providers.
+    - `provider_base.dart`: Base interface for providers.
+  - `google_drive_provider.dart`: Implementation for Google Drive provider.
+
+- `services/`: Contains the service layer for additional functionality.
+  - `interfaces/`: Contains interfaces for services.
+    - `browser_service_base.dart`: Base interface for browser services.
+    - `clipboard_service_base.dart`: Base interface for clipboard services.
+  - `browser_service.dart`: Implementation for browser service.
+  - `clipboard_service.dart`: Implementation for clipboard service.
+
+- `main.dart`: Entry point of the application.
 
 ## License
 
