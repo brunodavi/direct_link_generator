@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:universal_html/html.dart';
+import 'package:universal_html/html.dart' as html;
 
 AppBar appBar() => AppBar(
       title: const Text("Direct Link Generator"),
       leading: InkWell(
         onTap: () {
-          window.open(
+          html.window.open(
             "https://github.com/brunodavi/direct_link_generator",
             "source code",
           );
