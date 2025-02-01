@@ -50,8 +50,8 @@ lib/
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/brunodavi/direct-link-generator.git
-    cd direct-link-generator
+    git clone https://github.com/brunodavi/direct_link_generator.git
+    cd direct_link_generator
     ```
 
 2. Install dependencies:
