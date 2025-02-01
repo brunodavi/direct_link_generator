@@ -72,8 +72,8 @@ To add support for additional cloud storage providers, follow these steps:
 3. Add the new provider to the provider list in `generate_link.dart`:
 
     ```dart
-    import 'providers/google_drive_provider.dart';
-    import 'providers/interfaces/provider_base.dart';
+    import '/providers/interfaces/provider_base.dart';
+    import '/providers/google_drive_provider.dart';
 
     final providers = <ProviderBase>[
       GoogleDriveProvider(),
