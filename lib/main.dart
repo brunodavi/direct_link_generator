@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'Direct Link Generator',
       theme: ThemeData(
         textTheme: const TextTheme(
-          labelLarge: TextStyle(
-            fontSize: 32,
+          titleLarge: TextStyle(
+            fontSize: 28,
             color: Colors.white,
           ),
-          titleLarge: TextStyle(
-            fontSize: 32,
+          labelLarge: TextStyle(
+            fontSize: 28,
             color: Colors.white,
           ),
         ),

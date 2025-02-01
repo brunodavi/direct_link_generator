@@ -10,7 +10,10 @@ AppBar appBar() => AppBar(
             "source code",
           );
         },
-        child: const Icon(Icons.code),
+        child: const Icon(
+          Icons.code,
+          size: 32,
+        ),
       ),
       centerTitle: true,
     );

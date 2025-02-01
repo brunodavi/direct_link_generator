@@ -12,35 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _linkGeneratorController =
-      TextEditingController();
-
-  void copyLink() {
-    var link = _linkGeneratorController.text;
-
-    var linkGenerated = generateLink(link);
-
-    if (linkGenerated == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Error: Invalid link!"),
-          backgroundColor: Colors.red,
-        ),
-      );
-      return;
-    }
-
-    Clipboard.setData(ClipboardData(text: linkGenerated)).then(
-      (result) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Direct link copied for clipboard!"),
-            backgroundColor: Colors.green,
-          ),
-        );
-      },
-    );
-  }
+  final _linkGeneratorController = TextEditingController();
+  String? _errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +26,9 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: const EdgeInsets.all(16),
               child: TextField(
-                decoration: const InputDecoration(
-                  label: Text("Shared Link"),
+                decoration: InputDecoration(
+                  errorText: _errorText,
+                  label: const Text("Shared Link"),
                   hintText: "https://drive.google.com/file/d...",
                 ),
                 autofocus: true,
@@ -68,6 +42,33 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Future<void> copyLink() async {
+    var link = _linkGeneratorController.text;
+    var linkGenerated = generateLink(link);
+
+    if (linkGenerated == null) {
+      setState(() {
+        _errorText = "Error: Invalid link!";
+      });
+      return;
+    }
+
+    setState(() {
+      _errorText = null;
+    });
+
+    await Clipboard.setData(ClipboardData(text: linkGenerated));
+
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Direct link copied for clipboard!"),
+        backgroundColor: Colors.green,
       ),
     );
   }
