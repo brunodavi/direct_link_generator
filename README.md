@@ -119,8 +119,6 @@ To add support for additional cloud storage providers, follow these steps:
       return null;
     }
     ```
-   
-4. Update the UI to include an option for the new provider if necessary.
 
 ## Contributing
 
