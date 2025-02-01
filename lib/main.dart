@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'pages/home_page.dart';
+import 'services/browser_service.dart';
+import 'services/clipboard_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,7 +48,10 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: false,
       ),
-      home: const HomePage(),
+      home: HomePage(
+        browser: BrowserService(),
+        clipboard: ClipboardService(),
+      ),
     );
   }
 }

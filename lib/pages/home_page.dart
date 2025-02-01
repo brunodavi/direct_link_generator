@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '/core/generate_link.dart';
+import '/services/interfaces/browser_service_base.dart';
+import '/services/interfaces/clipboard_service_base.dart';
+
 import 'components/app_bar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.browser, required this.clipboard});
+
+  final BrowserServiceBase browser;
+  final ClipboardServiceBase clipboard;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -18,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(widget.browser),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       _errorText = null;
     });
 
-    await Clipboard.setData(ClipboardData(text: linkGenerated));
+    await widget.clipboard.set(linkGenerated);
 
     if (!mounted) return;
 
